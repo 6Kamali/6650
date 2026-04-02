@@ -3,62 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gearblock - Home</title>
+    <title>Gearblock | The Awakening v1.5</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --bg: #0a0a0a; --card: #141414; --accent: #ff9d00; --text: #fff; --dim: #a0a0a0; --border: #222; }
-        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
-        body { background: var(--bg); color: var(--text); line-height: 1.6; }
-        nav { display:flex; justify-content:space-between; align-items:center; padding:20px 10%; background:rgba(10,10,10,0.9); position:sticky; top:0; z-index:100; border-bottom:1px solid var(--border); }
-        .logo { font-weight:800; font-size:1.5rem; display:flex; align-items:center; gap:10px; }
-        .logo i { color: var(--accent); }
-        .nav-links { display:flex; gap:25px; list-style:none; }
-        .nav-links a { text-decoration:none; color:var(--dim); transition:0.3s; font-size:0.9rem; }
-        .nav-links a:hover, .nav-links a.active { color:var(--accent); }
-        .hero { padding:100px 10%; text-align:center; background:radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%); border-bottom:1px solid var(--border); }
-        .btn { padding:12px 25px; border-radius:8px; cursor:pointer; font-weight:600; transition:0.3s; border:none; text-decoration:none; display:inline-block; }
+        :root { --bg: #0d0d0d; --card: #161616; --accent: #ff9d00; --text: #eee; --dim: #888; --border: #252525; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif; }
+        body { background: var(--bg); color: var(--text); overflow-x: hidden; }
+        nav { display:flex; justify-content:space-between; align-items:center; padding:20px 10%; background:rgba(13,13,13,0.95); position:sticky; top:0; z-index:1000; border-bottom:1px solid var(--border); }
+        .nav-links { display:flex; gap:20px; list-style:none; }
+        .nav-links a { text-decoration:none; color:var(--dim); font-size:0.9rem; font-weight:600; transition:0.3s; }
+        .nav-links a:hover, .active { color:var(--accent); }
+        .hero { padding:120px 10%; text-align:center; background: radial-gradient(circle, #1a1a1a 0%, #0d0d0d 100%); border-bottom:1px solid var(--border); }
+        .badge { background:rgba(255,157,0,0.1); color:var(--accent); padding:6px 15px; border-radius:20px; font-size:0.75rem; font-weight:800; border:1px solid var(--accent); }
+        .btn { padding:14px 28px; border-radius:5px; cursor:pointer; font-weight:700; transition:0.3s; border:none; text-decoration:none; display:inline-block; margin: 5px; }
         .btn-p { background:var(--accent); color:#000; }
-        .btn-s { background:var(--card); color:#fff; border:1px solid var(--border); }
-        .features { padding:80px 10%; display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:20px; }
-        .card { background:var(--card); padding:30px; border-radius:12px; border:1px solid var(--border); }
-        .card i { font-size:2rem; color:var(--accent); margin-bottom:15px; }
+        .btn-s { background:transparent; color:#fff; border:1px solid var(--border); }
+        .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:25px; padding:60px 10%; }
+        .card { background:var(--card); padding:40px; border-radius:10px; border:1px solid var(--border); transition:0.3s; }
+        .card:hover { border-color:var(--accent); transform:translateY(-5px); }
+        .card i { font-size:2.5rem; color:var(--accent); margin-bottom:20px; }
         footer { padding:40px; text-align:center; border-top:1px solid var(--border); color:var(--dim); font-size:0.8rem; }
-        #toast { position:fixed; bottom:20px; right:20px; background:var(--accent); color:#000; padding:10px 20px; border-radius:5px; display:none; }
+        #toast { position:fixed; bottom:20px; right:20px; background:var(--accent); color:#000; padding:12px 24px; border-radius:5px; display:none; font-weight:bold; z-index:9999; }
     </style>
 </head>
 <body>
     <div id="toast">IP Copied!</div>
     <nav>
-        <div class="logo"><i class="fas fa-cog"></i> GEARBLOCK</div>
+        <div style="font-weight:900; font-size:1.4rem;"><i class="fas fa-cog fa-spin" style="color:var(--accent)"></i> GEARBLOCK</div>
         <ul class="nav-links">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="rules.html">Rules</a></li>
-            <li><a href="vote.html">Vote</a></li>
-            <li><a href="staff.html">Staff</a></li>
-            <li><a href="https://discord.gg/yourlink">Discord</a></li>
+            <li><a href="index.html" class="active">HOME</a></li>
+            <li><a href="updates.html">UPDATES</a></li>
+            <li><a href="rules.html">RULES</a></li>
+            <li><a href="staff.html">STAFF</a></li>
+            <li><a href="fame.html">HALL OF FAME</a></li>
+            <li><a href="shop.html">SHOP</a></li>
+            <li><a href="discord.html">DISCORD</a></li>
         </ul>
-        <button class="btn btn-p" onclick="copyIP()">Copy IP</button>
     </nav>
     <header class="hero">
-        <span style="color:var(--accent); font-weight:700;">JAVA & BEDROCK • 1.21+</span>
-        <h1 style="font-size:4rem; margin:10px 0;">Gear Up. Build On.</h1>
-        <p style="color:var(--dim); max-width:600px; margin:0 auto 30px;">A Semi-Vanilla survival experience centered around community, economy, and massive builds. No resets, no lag, just Minecraft.</p>
-        <div style="display:flex; justify-content:center; gap:15px;">
-            <button class="btn btn-p" onclick="copyIP()">Copy Server IP</button>
-            <a href="vote.html" class="btn btn-s">Vote for Rewards</a>
-        </div>
+        <span class="badge">v1.5: THE AWAKENING</span>
+        <h1 style="font-size:4.5rem; margin:20px 0;">GEAR UP. FIGHT ON.</h1>
+        <p style="color:var(--dim); max-width:700px; margin:0 auto 40px;">Warfare Expansion meets Survival SMP. Explore Nuketown or survive The Backrooms in our most stable update yet.</p>
+        <button class="btn btn-p" onclick="copyIP('play.gearblock.net')">JAVA: play.gearblock.net</button>
+        <button class="btn btn-s" onclick="copyIP('gearblock.exaroton.me')">BEDROCK: Port 19132</button>
     </header>
-    <section class="features">
-        <div class="card"><i class="fas fa-hammer"></i><h3>Survival</h3><p>Build a base, trade with players, and keep your progress forever. Long-term world stability is our priority.</p></div>
-        <div class="card"><i class="fas fa-coins"></i><h3>Economy</h3><p>Engage in player-run shops and a balanced economy system. Master the market to grow your empire.</p></div>
-        <div class="card"><i class="fas fa-shield-alt"></i><h3>Grief-Free</h3><p>We use industry-leading protection tools so you can focus on building without worrying about your gear.</p></div>
+    <section class="grid">
+        <div class="card"><i class="fas fa-gun"></i><h3>Warfare</h3><p>COD-inspired maps including Nuketown and Gulag with custom textures.</p></div>
+        <div class="card"><i class="fas fa-biohazard"></i><h3>The Backrooms</h3><p>Careful where you noclip. Reality is thinning in the v1.5 lobby.</p></div>
+        <div class="card"><i class="fas fa-hammer"></i><h3>Survival</h3><p>Player-driven economy, claims, and quests on a future-proofed network.</p></div>
     </section>
-    <footer>&copy; 2026 Gearblock. Not affiliated with Mojang. IP: play.gearblock.net</footer>
+    <footer>&copy; 2026 Kamali Network. Not affiliated with Mojang AB.</footer>
     <script>
-        function copyIP() {
-            navigator.clipboard.writeText("play.gearblock.net");
-            document.getElementById('toast').style.display='block';
-            setTimeout(()=> document.getElementById('toast').style.display='none', 2000);
+        function copyIP(ip) {
+            navigator.clipboard.writeText(ip);
+            const t = document.getElementById('toast');
+            t.style.display='block'; setTimeout(()=>t.style.display='none', 2000);
         }
     </script>
 </body>
