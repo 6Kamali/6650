@@ -3,104 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gearblock | Voxel Glass Home</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Gearblock Network | Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            /* Palette: Tactical Green & Minecraft Stone */
-            --bg-base: #0a0c0a; 
-            --voxel: rgba(17, 20, 17, 0.7); /* Frosted Minecraft Stone */
-            --accent: #2ecc71; /* Jade Green */
-            --accent-glow: rgba(46, 204, 113, 0.3);
-            --text-primary: #f1f1f1;
-            --text-dim: #7f8c8d;
-            --voxel-border: rgba(46, 204, 113, 0.2);
-            --voxel-glass: blur(12px) saturate(160%); /* Core Glassmorphism */
+            --emerald: #2ecc71;
+            --emerald-glow: rgba(46, 204, 113, 0.4);
+            --glass-bg: rgba(15, 18, 15, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-dim: #b3b3b3;
+            --blur: blur(16px);
         }
 
-        /* Essential Voxel Reset */
-        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Courier New', Courier, monospace; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Segoe UI', sans-serif; }
 
         body {
-            background-color: var(--bg-base);
-            color: var(--text-primary);
-            line-height: 1.5;
-            overflow-x: hidden;
-            /* IMPORTANT: Add your server screenshot here for the glass blur to work */
-            background-image: 
-                linear-gradient(rgba(10,12,10,0.8), rgba(10,12,10,0.9)), 
-                url('/* (ADD MINECRAFT SCREENSHOT URL HERE) */');
+            background: #050505 url('https://images.unsplash.com/photo-1627398242454-45a1465c2479?q=80&w=2000&auto=format&fit=crop') no-repeat center center fixed;
             background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
         }
 
-        /* 1. Voxel Navigation - Slim & Angled */
+        /* Modern Glass Nav */
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 10px 10%; background: rgba(10, 12, 10, 0.95);
-            backdrop-filter: blur(8px); border-bottom: 2px solid var(--accent);
-            position: sticky; top: 0; z-index: 2000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            padding: 15px 8%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: var(--blur);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky; top: 0; z-index: 1000;
         }
 
-        .voxel-logo { font-weight: 900; letter-spacing: 2px; font-size: 1.1rem; color: var(--accent); }
-        .voxel-logo span { color: var(--text-primary); }
+        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -1px; }
+        .logo span { color: var(--emerald); }
 
-        .nav-links { display: flex; gap: 15px; list-style: none; }
-        .nav-links a {
-            text-decoration: none; color: var(--text-dim);
-            font-size: 0.8rem; font-weight: bold; transition: 0.2s;
-            text-transform: uppercase; letter-spacing: 1px;
+        .nav-links { display: flex; gap: 25px; list-style: none; }
+        .nav-links a { 
+            text-decoration: none; color: var(--text-dim); 
+            font-size: 0.9rem; font-weight: 600; transition: 0.3s;
         }
-        .nav-links a:hover, .active { color: var(--accent); text-shadow: 0 0 8px var(--accent); }
+        .nav-links a:hover, .active { color: var(--emerald); }
 
-        /* 2. Container & Voxel Panels */
-        .container { max-width: 1100px; margin: 50px auto; padding: 0 20px; }
+        /* Hero Layout */
+        .container { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
 
-        .voxel-panel {
-            background: var(--voxel); backdrop-filter: var(--voxel-glass);
-            border: 1px solid var(--voxel-border); border-radius: 4px; /* Hard corner defined by reference */
-            padding: 40px; margin-bottom: 30px; position: relative;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: var(--blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 50px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         }
 
-        .hero h1 { font-size: 3rem; color: var(--accent); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px; text-shadow: 3px 3px 0 #000; }
-        .hero p { color: var(--text-dim); max-width: 700px; margin: 0 auto 30px; font-size: 1rem; }
+        h1 { font-size: 4rem; font-weight: 900; margin-bottom: 10px; line-height: 1; }
+        .hero-sub { color: var(--text-dim); font-size: 1.2rem; margin-bottom: 30px; }
 
-        /* 3. Blocky Voxel Buttons */
+        /* Functional Buttons */
+        .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .btn {
-            padding: 10px 20px; border-radius: 0; cursor: pointer;
-            font-weight: 900; transition: 0.2s; border: none;
-            text-decoration: none; display: inline-block; margin: 5px;
-            text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;
+            padding: 14px 32px; border-radius: 12px; font-weight: 700;
+            text-decoration: none; transition: 0.3s; cursor: pointer; border: none;
+            font-size: 0.9rem;
         }
-        .btn-p { 
-            background: var(--accent); color: #000; 
-            border: 2px solid #1a1a1a;
-            box-shadow: 3px 3px 0 rgba(0,0,0,0.5), inset -2px -2px 0 #1e8449; 
-        }
-        .btn-p:hover { transform: translate(1px, 1px); box-shadow: 2px 2px 0 rgba(0,0,0,0.5); }
+        .btn-primary { background: var(--emerald); color: #000; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px var(--emerald-glow); }
+        .btn-secondary { background: rgba(255,255,255,0.05); color: #fff; border: 1px solid var(--glass-border); }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); }
 
-        /* 4. Voxel Card Grid */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .voxel-card {
-            background: var(--voxel); backdrop-filter: var(--voxel-glass);
-            border: 1px solid var(--voxel-border); border-radius: 4px;
-            padding: 30px; transition: 0.3s ease; text-align: center;
+        /* Game Mode Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: left;
         }
-        .voxel-card:hover { border-color: var(--accent); transform: scale(1.02); box-shadow: 0 0 25px var(--accent-glow); }
-        .voxel-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; }
-        .voxel-card h3 { color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
-        .voxel-card p { color: var(--text-dim); font-size: 0.9rem; }
+        .card:hover { transform: scale(1.03); border-color: var(--emerald); }
+        .card i { font-size: 2rem; color: var(--emerald); margin-bottom: 20px; display: block; }
+        .card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .card p { color: var(--text-dim); font-size: 0.95rem; }
 
-        #toast { position: fixed; bottom: 20px; right: 20px; background: var(--accent); color: #000; padding: 10px 20px; display: none; font-weight: bold; border: 2px solid #000; box-shadow: 3px 3px 0 rgba(0,0,0,0.5); }
+        #toast { 
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            background: var(--emerald); color: #000; padding: 12px 30px;
+            border-radius: 50px; font-weight: 800; display: none; z-index: 2000;
+        }
     </style>
 </head>
 <body>
-    <div id="toast">IP_COPIED_TO_CLIPBOARD</div>
+    <div id="toast">IP COPIED TO CLIPBOARD</div>
     <nav>
-        <div class="voxel-logo"><i class="fas fa-hammer"></i> GEAR<span>BLOCK</span></div>
+        <div class="logo">GEAR<span>BLOCK</span></div>
         <ul class="nav-links">
             <li><a href="index.html" class="active">Home</a></li>
             <li><a href="updates.html">Updates</a></li>
@@ -108,36 +108,35 @@
             <li><a href="staff.html">Staff</a></li>
             <li><a href="discord.html">Discord</a></li>
         </ul>
-        <button class="btn btn-p" style="font-size: 0.7rem; padding: 6px 14px;" onclick="copyIP()">Copy IP</button>
+        <button class="btn btn-primary" style="padding: 8px 20px;" onclick="copyIP()">PLAY NOW</button>
     </nav>
 
-    <div class="container hero">
-        <header class="voxel-panel" style="text-align: center;">
-            <h1>Voxel Network</h1>
-            <p>Welcome to Gearblock, a high-performance network defined by custom survival, competitive minigames, and master-level creative tools.</p>
-            <div style="background: rgba(0,0,0,0.5); padding: 15px; display: inline-block; margin-bottom: 25px; border: 1px solid var(--voxel-border);">
-                <code>[CONNECT] play.gearblock.net</code>
+    <div class="container">
+        <div class="glass-panel">
+            <p style="text-transform: uppercase; letter-spacing: 3px; color: var(--emerald); font-weight: 800; font-size: 0.8rem;">The Future of Survival</p>
+            <h1>Level Up Your <span>Game.</span></h1>
+            <p class="hero-sub">Welcome to the Gearblock Network. Build, fight, and survive in a world built for the community.</p>
+            <div class="btn-group">
+                <a href="#" class="btn btn-primary" onclick="copyIP()">play.gearblock.net</a>
+                <a href="discord.html" class="btn btn-secondary"><i class="fab fa-discord"></i> Community Discord</a>
             </div>
-            <br>
-            <a href="discord.html" class="btn btn-p">Join the Comms</a>
-            <a href="rules.html" class="btn btn-p" style="background:transparent; color:white; border-color:var(--voxel-border);">View Protocols</a>
-        </header>
+        </div>
 
         <div class="grid">
-            <div class="voxel-card">
-                <i class="fas fa-shield-alt"></i>
+            <div class="card">
+                <i class="fas fa-seedling"></i>
                 <h3>Survival SMP</h3>
-                <p>Build your empire on a future-proofed world. Player-driven economy, claims, and long-term world persistence.</p>
+                <p>Pure survival with a player-run economy, claims, and custom events. No world resets, just pure progress.</p>
             </div>
-            <div class="voxel-card">
-                <i class="fas fa-trophy"></i>
+            <div class="card">
+                <i class="fas fa-fire"></i>
                 <h3>Minigames</h3>
-                <p>Classic competitive action: BedWars, TNT Run, and Spleef. Refined combat and custom leaderboards.</p>
+                <p>Fast-paced BedWars, TNT Run, and specialized combat arenas. Low latency, high performance.</p>
             </div>
-            <div class="voxel-card">
-                <i class="fas fa-cubes"></i>
+            <div class="card">
+                <i class="fas fa-wand-magic-sparkles"></i>
                 <h3>Creative</h3>
-                <p>Unlimited resources and WorldEdit access. Secure your plot and build the impossible in Voxel Glass.</p>
+                <p>Massive plots, full WorldEdit access, and a community of master builders to help you grow.</p>
             </div>
         </div>
     </div>
@@ -146,7 +145,8 @@
         function copyIP() {
             navigator.clipboard.writeText("play.gearblock.net");
             const t = document.getElementById('toast');
-            t.style.display='block'; setTimeout(()=>t.style.display='none', 2500);
+            t.style.display='block'; 
+            setTimeout(() => { t.style.display='none'; }, 2500);
         }
     </script>
 </body>
