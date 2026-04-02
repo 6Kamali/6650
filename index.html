@@ -3,78 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gearblock | Home</title>
+    <title>Gearblock | Voxel Glass Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --bg-dark: #0a0b0a;
-            --panel: rgba(17, 20, 17, 0.75);
-            --accent: #2ecc71; 
+            /* Palette: Tactical Green & Minecraft Stone */
+            --bg-base: #0a0c0a; 
+            --voxel: rgba(17, 20, 17, 0.7); /* Frosted Minecraft Stone */
+            --accent: #2ecc71; /* Jade Green */
             --accent-glow: rgba(46, 204, 113, 0.3);
-            --text: #e0e0e0;
-            --text-dim: #95a5a6;
-            --border: rgba(46, 204, 113, 0.2);
-            --glass: blur(12px) saturate(160%);
+            --text-primary: #f1f1f1;
+            --text-dim: #7f8c8d;
+            --voxel-border: rgba(46, 204, 113, 0.2);
+            --voxel-glass: blur(12px) saturate(160%); /* Core Glassmorphism */
         }
 
-        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
-        body { background: var(--bg-dark); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+        /* Essential Voxel Reset */
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Courier New', Courier, monospace; }
 
-        /* Navigation - Slim & Glassy */
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            line-height: 1.5;
+            overflow-x: hidden;
+            /* IMPORTANT: Add your server screenshot here for the glass blur to work */
+            background-image: 
+                linear-gradient(rgba(10,12,10,0.8), rgba(10,12,10,0.9)), 
+                url('/* (ADD MINECRAFT SCREENSHOT URL HERE) */');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* 1. Voxel Navigation - Slim & Angled */
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 12px 10%; background: rgba(10, 11, 10, 0.8);
-            backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
-            position: sticky; top: 0; z-index: 1000;
+            padding: 10px 10%; background: rgba(10, 12, 10, 0.95);
+            backdrop-filter: blur(8px); border-bottom: 2px solid var(--accent);
+            position: sticky; top: 0; z-index: 2000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
         }
-        .nav-links { display: flex; gap: 20px; list-style: none; }
+
+        .voxel-logo { font-weight: 900; letter-spacing: 2px; font-size: 1.1rem; color: var(--accent); }
+        .voxel-logo span { color: var(--text-primary); }
+
+        .nav-links { display: flex; gap: 15px; list-style: none; }
         .nav-links a {
             text-decoration: none; color: var(--text-dim);
-            font-size: 0.8rem; font-weight: 700; transition: 0.3s;
-            text-transform: uppercase; letter-spacing: 1.5px;
+            font-size: 0.8rem; font-weight: bold; transition: 0.2s;
+            text-transform: uppercase; letter-spacing: 1px;
         }
-        .nav-links a:hover, .active { color: var(--accent); text-shadow: 0 0 10px var(--accent-glow); }
+        .nav-links a:hover, .active { color: var(--accent); text-shadow: 0 0 8px var(--accent); }
 
-        /* Hero Section */
-        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
-        .hero-panel {
-            background: var(--panel); backdrop-filter: var(--glass);
-            border: 1px solid var(--border); border-radius: 12px;
-            padding: 60px; text-align: center; margin-bottom: 30px;
+        /* 2. Container & Voxel Panels */
+        .container { max-width: 1100px; margin: 50px auto; padding: 0 20px; }
+
+        .voxel-panel {
+            background: var(--voxel); backdrop-filter: var(--voxel-glass);
+            border: 1px solid var(--voxel-border); border-radius: 4px; /* Hard corner defined by reference */
+            padding: 40px; margin-bottom: 30px; position: relative;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.7);
         }
-        .hero-panel h1 { font-size: 3rem; letter-spacing: -1px; margin-bottom: 15px; }
-        .hero-panel span { color: var(--accent); }
 
-        /* Button Styling */
+        .hero h1 { font-size: 3rem; color: var(--accent); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px; text-shadow: 3px 3px 0 #000; }
+        .hero p { color: var(--text-dim); max-width: 700px; margin: 0 auto 30px; font-size: 1rem; }
+
+        /* 3. Blocky Voxel Buttons */
         .btn {
-            padding: 12px 28px; border-radius: 6px; cursor: pointer;
-            font-weight: 700; transition: 0.3s; border: none;
-            text-decoration: none; display: inline-block; margin: 10px;
-            text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;
+            padding: 10px 20px; border-radius: 0; cursor: pointer;
+            font-weight: 900; transition: 0.2s; border: none;
+            text-decoration: none; display: inline-block; margin: 5px;
+            text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;
         }
-        .btn-p { background: var(--accent); color: #000; box-shadow: 0 0 15px var(--accent-glow); }
-        .btn-s { background: rgba(255,255,255,0.05); color: #fff; border: 1px solid var(--border); }
-        .btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+        .btn-p { 
+            background: var(--accent); color: #000; 
+            border: 2px solid #1a1a1a;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.5), inset -2px -2px 0 #1e8449; 
+        }
+        .btn-p:hover { transform: translate(1px, 1px); box-shadow: 2px 2px 0 rgba(0,0,0,0.5); }
 
-        /* Grid Layout */
+        /* 4. Voxel Card Grid */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .card {
-            background: var(--panel); backdrop-filter: var(--glass);
-            border: 1px solid var(--border); border-radius: 12px;
-            padding: 35px; transition: 0.3s ease; text-align: center;
+        .voxel-card {
+            background: var(--voxel); backdrop-filter: var(--voxel-glass);
+            border: 1px solid var(--voxel-border); border-radius: 4px;
+            padding: 30px; transition: 0.3s ease; text-align: center;
         }
-        .card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; }
-        .card h3 { margin-bottom: 12px; font-size: 1.4rem; }
-        .card p { color: var(--text-dim); font-size: 0.95rem; }
+        .voxel-card:hover { border-color: var(--accent); transform: scale(1.02); box-shadow: 0 0 25px var(--accent-glow); }
+        .voxel-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; }
+        .voxel-card h3 { color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+        .voxel-card p { color: var(--text-dim); font-size: 0.9rem; }
 
-        #toast { position: fixed; bottom: 20px; right: 20px; background: var(--accent); color: #000; padding: 12px 25px; border-radius: 6px; font-weight: bold; display: none; z-index: 9999; }
+        #toast { position: fixed; bottom: 20px; right: 20px; background: var(--accent); color: #000; padding: 10px 20px; display: none; font-weight: bold; border: 2px solid #000; box-shadow: 3px 3px 0 rgba(0,0,0,0.5); }
     </style>
 </head>
 <body>
-    <div id="toast">IP_COPIED_SUCCESSFULLY</div>
+    <div id="toast">IP_COPIED_TO_CLIPBOARD</div>
     <nav>
-        <div style="font-weight:900; letter-spacing:2px; font-size: 1.2rem;">GEAR<span>BLOCK</span></div>
+        <div class="voxel-logo"><i class="fas fa-hammer"></i> GEAR<span>BLOCK</span></div>
         <ul class="nav-links">
             <li><a href="index.html" class="active">Home</a></li>
             <li><a href="updates.html">Updates</a></li>
@@ -82,36 +108,36 @@
             <li><a href="staff.html">Staff</a></li>
             <li><a href="discord.html">Discord</a></li>
         </ul>
-        <button class="btn btn-p" style="padding: 8px 18px; margin:0;" onclick="copyIP()">Copy IP</button>
+        <button class="btn btn-p" style="font-size: 0.7rem; padding: 6px 14px;" onclick="copyIP()">Copy IP</button>
     </nav>
 
-    <div class="container">
-        <header class="hero-panel">
-            <h1>Welcome to the <span>Gearblock</span> Network</h1>
-            <p style="color: var(--text-dim); font-size: 1.1rem; margin-bottom: 30px;">A high-performance community driven by stability, economy, and skill.</p>
-            <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; display: inline-block; margin-bottom: 20px; border: 1px solid var(--border);">
-                <code>SERVER_IP: play.gearblock.net</code>
+    <div class="container hero">
+        <header class="voxel-panel" style="text-align: center;">
+            <h1>Voxel Network</h1>
+            <p>Welcome to Gearblock, a high-performance network defined by custom survival, competitive minigames, and master-level creative tools.</p>
+            <div style="background: rgba(0,0,0,0.5); padding: 15px; display: inline-block; margin-bottom: 25px; border: 1px solid var(--voxel-border);">
+                <code>[CONNECT] play.gearblock.net</code>
             </div>
             <br>
-            <a href="discord.html" class="btn btn-p">Join the Community</a>
-            <a href="rules.html" class="btn btn-s">View Rules</a>
+            <a href="discord.html" class="btn btn-p">Join the Comms</a>
+            <a href="rules.html" class="btn btn-p" style="background:transparent; color:white; border-color:var(--voxel-border);">View Protocols</a>
         </header>
 
         <div class="grid">
-            <div class="card">
-                <i class="fas fa-cubes"></i>
+            <div class="voxel-card">
+                <i class="fas fa-shield-alt"></i>
                 <h3>Survival SMP</h3>
-                <p>Experience a player-driven economy, custom quests, and land protection. Your builds are safe forever.</p>
+                <p>Build your empire on a future-proofed world. Player-driven economy, claims, and long-term world persistence.</p>
             </div>
-            <div class="card">
-                <i class="fas fa-gamepad"></i>
+            <div class="voxel-card">
+                <i class="fas fa-trophy"></i>
                 <h3>Minigames</h3>
-                <p>Fast-paced action including BedWars, TNT Run, and Spleef. Compete on global leaderboards.</p>
+                <p>Classic competitive action: BedWars, TNT Run, and Spleef. Refined combat and custom leaderboards.</p>
             </div>
-            <div class="card">
-                <i class="fas fa-paint-brush"></i>
+            <div class="voxel-card">
+                <i class="fas fa-cubes"></i>
                 <h3>Creative</h3>
-                <p>Claim your plot and let your imagination run wild with unlimited blocks and worldedit access.</p>
+                <p>Unlimited resources and WorldEdit access. Secure your plot and build the impossible in Voxel Glass.</p>
             </div>
         </div>
     </div>
