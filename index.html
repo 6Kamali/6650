@@ -168,8 +168,13 @@
     updateServerStatus();
     setInterval(updateServerStatus, 30000);
 </script>
+
+
+            
             <div class="btn-group">
-                <a href="#" class="btn btn-primary" onclick="copyIP()">play.gearblock.net</a>
+                <a href="javascript:void(0)" class="copy-btn" id="ip-button" onclick="copyIP()">
+   COPY IP
+</a>
                 <a href="discord.html" class="btn btn-secondary"><i class="fab fa-discord"></i> Community Discord</a>
             </div>
         </div>
@@ -193,13 +198,61 @@
         </div>
     </div>
 
-    <script>
-        function copyIP() {
-            navigator.clipboard.writeText("play.gearblock.net");
-            const t = document.getElementById('toast');
-            t.style.display='block'; 
-            setTimeout(() => { t.style.display='none'; }, 2500);
-        }
-    </script>
+   <script>
+    /** * CLIPBOARD SYSTEM 
+     * Handles IP copying and visual button feedback
+     */
+    function copyIP() {
+        const serverIP = "play.gearblock.net";
+        const btn = document.getElementById('ip-button');
+        
+        navigator.clipboard.writeText(serverIP).then(() => {
+            // Success State
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "IP COPIED!";
+            btn.classList.add('copied-success');
+            
+            // Reset to default after 2 seconds
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.classList.remove('copied-success');
+            }, 2000);
+        }).catch(err => {
+            console.error('Copy failed:', err);
+        });
+    }
+</script>
+
+<style>
+    /* Button Aesthetics */
+    .copy-btn {
+        display: inline-block;
+        background: var(--emerald);
+        color: #000 !important;
+        font-weight: 800;
+        padding: 14px 32px;
+        border-radius: 12px;
+        text-decoration: none;
+        letter-spacing: 1px;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 0 20px var(--emerald-glow);
+        cursor: pointer;
+        border: none;
+        text-transform: uppercase;
+    }
+
+    .copy-btn:hover {
+        transform: scale(1.05) translateY(-3px);
+        box-shadow: 0 0 35px var(--emerald);
+        filter: brightness(1.1);
+    }
+
+    /* Success State Flash */
+    .copied-success {
+        background: #ffffff !important;
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.5) !important;
+        transform: scale(0.95) !important;
+    }
+</style>
 </body>
 </html>
