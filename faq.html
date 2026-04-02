@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gearblock | FAQ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --emerald: #2ecc71;
+            --glass-bg: rgba(15, 18, 15, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-dim: #b3b3b3;
+            --blur: blur(20px);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body {
+            background: #050505 url('https://media.forgecdn.net/attachments/257/822/2019-07-25_19.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--text-main);
+        }
+
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 8%; background: rgba(0, 0, 0, 0.4); backdrop-filter: var(--blur);
+            border-bottom: 1px solid var(--glass-border); position: sticky; top: 0; z-index: 1000;
+        }
+        .logo { font-size: 1.5rem; font-weight: 800; }
+        .logo span { color: var(--emerald); }
+        .nav-links { display: flex; gap: 25px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text-dim); font-size: 0.9rem; font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover, .active { color: var(--emerald); }
+
+        .container { max-width: 900px; margin: 60px auto; padding: 0 20px; }
+        
+        .glass-panel {
+            background: var(--glass-bg); backdrop-filter: var(--blur);
+            border: 1px solid var(--glass-border); border-radius: 24px;
+            padding: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .faq-item h3 { color: var(--emerald); margin-bottom: 10px; font-size: 1.1rem; }
+        .faq-item p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">GEAR<span>BLOCK</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="updates.html">Updates</a></li>
+            <li><a href="rules.html">Rules</a></li>
+            <li><a href="staff.html">Staff</a></li>
+            <li><a href="discord.html">Discord</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="glass-panel">
+            <h1 style="margin-bottom: 30px;">F.A.Q.</h1>
+            
+            <div class="faq-item">
+                <h3>How do I join the server?</h3>
+                <p>Launch Minecraft: Java Edition, go to Multiplayer, click 'Add Server', and enter <strong>play.gearblock.net</strong>. Make sure you are on the latest stable version!</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Is the server Bedrock compatible?</h3>
+                <p>Currently, Gearblock is optimized for Java Edition. We are exploring Geyser integration for future updates to allow cross-play.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>What is the "Backrooms Anomaly"?</h3>
+                <p>It is a unique server event/lore location. Rumor has it that clipping through certain walls in the lobby might lead you to Level 0.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>How do I apply for staff?</h3>
+                <p>Check the #applications channel in our Discord server. We look for active players who follow the rules and help others.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
