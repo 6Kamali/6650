@@ -71,6 +71,14 @@
         }
 
         h2 { color: var(--emerald); margin-bottom: 10px; }
+
+        /* Style dedicated to the Minecraft obfuscation look */
+        .scramble {
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            letter-spacing: 1px;
+            word-break: break-all;
+        }
     </style>
 </head>
 <body>
@@ -92,6 +100,16 @@
             <h2>Network Logs</h2>
             <p style="color: var(--text-dim);">The latest transmissions from the Gearblock Dev team.</p>
             
+            <!-- NEW ENCRYPTED CARD: v1.6 THE REVIVAL -->
+            <div class="update-card" style="border-color: var(--emerald); box-shadow: 0 0 15px rgba(46, 204, 113, 0.15);">
+                <span class="tag" style="background: #fff; color: #000; box-shadow: 0 0 10px rgba(255,255,255,0.3);">CLASSIFIED</span>
+                <h3 style="margin: 10px 0; color: var(--emerald);">v1.6: THE REVIVAL</h3>
+                <!-- The descriptive text is completely randomized by JavaScript to simulate &k -->
+                <p class="scramble" style="color: var(--emerald); font-size: 0.9rem; line-height: 1.6; opacity: 0.95;">
+                    The simulation is altering reality structures across all grid nodes. Project revival parameters have been fully initiated. Reality anchors are breaking loose.
+                </p>
+            </div>
+
             <div class="update-card">
                 <span class="tag">Latest</span>
                 <h3 style="margin: 10px 0;">v1.5: THE AWAKENING</h3>
@@ -108,5 +126,33 @@
             </div>
         </div>
     </div>
+
+    <!-- JavaScript Engine for Minecraft style &k obfuscation -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const scrambleElements = document.querySelectorAll('.scramble');
+            
+            // Pool of classic symbols resembling changing characters
+            const chars = "¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿŒœŠšŸƒˆ˜–—‘’‚“”„†‡•…‰‹›€™";
+
+            scrambleElements.forEach(element => {
+                // Keep track of original structural length and split layout
+                const originalText = element.textContent.trim();
+                
+                setInterval(() => {
+                    let scrambled = "";
+                    for (let i = 0; i < originalText.length; i++) {
+                        if (originalText[i] === " ") {
+                            scrambled += " "; // Keep spacing structural
+                        } else {
+                            // Pick a completely random variant character
+                            scrambled += chars[Math.floor(Math.random() * chars.length)];
+                        }
+                    }
+                    element.textContent = scrambled;
+                }, 40); // Rapid tick rate mirrors Minecraft's style closely
+            });
+        });
+    </script>
 </body>
 </html>
