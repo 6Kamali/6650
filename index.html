@@ -137,7 +137,7 @@
             transition: opacity 1s ease, max-height 1s ease;
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 6px;
             align-items: center;
             justify-content: center;
         }
@@ -148,7 +148,7 @@
 
         .scramble {
             font-family: 'Courier New', Courier, monospace;
-            font-size: 0.95rem;
+            font-size: 1.1rem;
             font-weight: 800;
             color: #e74c3c;
             text-shadow: 0 0 8px rgba(231, 76, 60, 0.4);
@@ -238,10 +238,9 @@
                 </div>
             </div>
 
-            <!-- Glitched Easter Egg Block (Triggered after 30 seconds) -->
             <div class="secret-glitch-box" id="secret-box">
-                <div class="scramble">new Admin?</div>
-                <div class="scramble" style="color: var(--emerald); text-shadow: 0 0 8px rgba(46,204,113,0.4);">spawn revamped?</div>
+                <div class="scramble" data-value="new Admin?">new Admin?</div>
+                <div class="scramble" data-value="spawn revamped?" style="color: var(--emerald); text-shadow: 0 0 8px rgba(46,204,113,0.4);">spawn revamped?</div>
             </div>
 
             <a href="home.html" class="continue-btn">Continue to Website <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></a>
@@ -286,25 +285,31 @@
             }
         }, 30000);
 
-        // Minecraft &k Scrambler Engine for the Easter Egg text
+        // Intelligent Flicker Matrix Engine (Keeps text completely legible)
         document.addEventListener("DOMContentLoaded", () => {
             const scrambleElements = document.querySelectorAll('.scramble');
             const chars = "¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ";
 
             scrambleElements.forEach(element => {
-                const originalText = element.textContent.trim();
+                const targetText = element.getAttribute('data-value');
                 
                 setInterval(() => {
-                    let scrambled = "";
-                    for (let i = 0; i < originalText.length; i++) {
-                        if (originalText[i] === " " || originalText[i] === "?") {
-                            scrambled += originalText[i]; // Leave gaps and question marks intact
+                    let output = "";
+                    // 15% chance to experience a micro-flicker frame
+                    const isGlitchedFrame = Math.random() < 0.15; 
+
+                    for (let i = 0; i < targetText.length; i++) {
+                        if (targetText[i] === " ") {
+                            output += " ";
+                        } else if (isGlitchedFrame && Math.random() < 0.3) {
+                            // Only scramble random individual letters during a glitched frame
+                            output += chars[Math.floor(Math.random() * chars.length)];
                         } else {
-                            scrambled += chars[Math.floor(Math.random() * chars.length)];
+                            output += targetText[i];
                         }
                     }
-                    element.textContent = scrambled;
-                }, 50);
+                    element.textContent = output;
+                }, 60);
             });
         });
     </script>
