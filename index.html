@@ -27,6 +27,19 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
+            position: relative;
+        }
+
+        /* Top Left Secret Corner Redirect Link */
+        .secret-corner-trigger {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            z-index: 9999;
+            cursor: default;
         }
 
         .splash-container {
@@ -46,11 +59,19 @@
             overflow: hidden;
         }
 
+        /* Clickable Logo Style */
         .logo { 
             font-size: 2rem; 
             font-weight: 800; 
             letter-spacing: -1px; 
             margin-bottom: 30px;
+            cursor: pointer;
+            display: inline-block;
+            user-select: none;
+            transition: transform 0.2s;
+        }
+        .logo:hover {
+            transform: scale(1.03);
         }
         .logo span { color: var(--emerald); }
 
@@ -120,12 +141,23 @@
             margin-bottom: 5px;
         }
 
+        /* Easter Egg Clickable Target Labels */
         .time-box .label {
             font-size: 0.75rem;
             text-transform: uppercase;
             color: var(--emerald);
             letter-spacing: 2px;
             font-weight: 700;
+            display: block;
+        }
+        
+        .clickable-label {
+            cursor: pointer;
+            transition: color 0.2s, transform 0.2s;
+        }
+        .clickable-label:hover {
+            color: #ffffff;
+            transform: scale(1.05);
         }
 
         /* Secrets Area (Hidden until 30s passes) */
@@ -181,6 +213,20 @@
             filter: brightness(1.1);
         }
 
+        /* Hidden Fullscreen Video Player Overlay */
+        #video-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #000;
+            z-index: 10000;
+        }
+        #video-overlay video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
         /* Animation Keyframes */
         @keyframes mainGlitch {
             0%, 100% { transform: skew(0deg); }
@@ -212,9 +258,15 @@
 </head>
 <body>
 
+    <a href="https://6kamali.github.io/Gearblock/" class="secret-corner-trigger"></a>
+
+    <div id="video-overlay">
+        <video id="player" controls></video>
+    </div>
+
     <div class="splash-container">
         <div class="glass-panel">
-            <div class="logo">GEAR<span>BLOCK</span></div>
+            <div class="logo" id="logo-rickroll">GEAR<span>BLOCK</span></div>
             
             <h1 class="glitch-title">Something <span>New</span> Is Coming.</h1>
             <p class="sub-text">We are crafting an updated experience. Get ready for the next chapter.</p>
@@ -222,11 +274,11 @@
             <div class="countdown-container">
                 <div class="time-box">
                     <span class="number" id="days">00</span>
-                    <span class="label">Days</span>
+                    <span class="label clickable-label" onclick="window.location.href='https://cdn.mtdv.me/video/whistle.mp4'">Days</span>
                 </div>
                 <div class="time-box">
                     <span class="number" id="hours">00</span>
-                    <span class="label">Hours</span>
+                    <span class="label clickable-label" onclick="window.location.href='https://cdn.mtdv.me/video/galaxy_brain.mp4'">Hours</span>
                 </div>
                 <div class="time-box">
                     <span class="number" id="minutes">00</span>
@@ -234,7 +286,7 @@
                 </div>
                 <div class="time-box">
                     <span class="number" id="seconds">00</span>
-                    <span class="label">Secs</span>
+                    <span class="label clickable-label" onclick="window.location.href='https://ibb.co/4RVZ4Cxw'">Secs</span>
                 </div>
             </div>
 
@@ -285,7 +337,7 @@
             }
         }, 30000);
 
-        // Intelligent Flicker Matrix Engine (Keeps text completely legible)
+        // Intelligent Flicker Matrix Engine
         document.addEventListener("DOMContentLoaded", () => {
             const scrambleElements = document.querySelectorAll('.scramble');
             const chars = "¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ";
@@ -295,14 +347,12 @@
                 
                 setInterval(() => {
                     let output = "";
-                    // 15% chance to experience a micro-flicker frame
                     const isGlitchedFrame = Math.random() < 0.15; 
 
                     for (let i = 0; i < targetText.length; i++) {
                         if (targetText[i] === " ") {
                             output += " ";
                         } else if (isGlitchedFrame && Math.random() < 0.3) {
-                            // Only scramble random individual letters during a glitched frame
                             output += chars[Math.floor(Math.random() * chars.length)];
                         } else {
                             output += targetText[i];
@@ -312,6 +362,44 @@
                 }, 60);
             });
         });
+
+        // Fullscreen Rickroll Engine Injection
+        document.getElementById('logo-rickroll').addEventListener('click', () => {
+            const container = document.getElementById('video-overlay');
+            const player = document.getElementById('player');
+            
+            player.src = "https://cdn.mtdv.me/video/rick.mp4";
+            container.style.display = "block";
+            
+            // Request native layout engine fullscreen access across standard desktop + mobile browsers
+            if (container.requestFullscreen) {
+                container.requestFullscreen();
+            } else if (container.webkitRequestFullscreen) { /* Safari / Older iOS engines */
+                container.webkitRequestFullscreen();
+            } else if (container.msRequestFullscreen) { /* IE11 Edge fallback setup */
+                container.msRequestFullscreen();
+            }
+            
+            player.play().catch(error => {
+                console.log("Autoplay block handled. Manual backup execution scheduled.", error);
+            });
+        });
+
+        // Close display overlay layer if user exits fullscreen mode manually
+        document.addEventListener('fullscreenchange', exitHandler);
+        document.addEventListener('webkitfullscreenchange', exitHandler);
+        document.addEventListener('mozfullscreenchange', exitHandler);
+        document.addEventListener('MSFullscreenChange', exitHandler);
+
+        function exitHandler() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
+                const container = document.getElementById('video-overlay');
+                const player = document.getElementById('player');
+                container.style.display = "none";
+                player.pause();
+                player.src = "";
+            }
+        }
     </script>
 </body>
 </html>
