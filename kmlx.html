@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamali Networking | Cyber Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --emerald: #00f3ff;
+            --emerald-glow: rgba(0, 243, 255, 0.4);
+            --glass-bg: rgba(10, 15, 25, 0.75);
+            --glass-border: rgba(0, 243, 255, 0.2);
+            --text-main: #ffffff;
+            --text-dim: #94a3b8;
+            --blur: blur(16px);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Segoe UI', sans-serif; }
+
+        body {
+            background: #02040a url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2000&auto=format&fit=crop') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        /* Modern Glass Nav */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 8%;
+            background: rgba(2, 4, 10, 0.6);
+            backdrop-filter: var(--blur);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -1px; }
+        .logo span { color: var(--emerald); text-shadow: 0 0 10px var(--emerald-glow); }
+
+        .nav-links { display: flex; gap: 25px; list-style: none; }
+        .nav-links a { 
+            text-decoration: none; color: var(--text-dim); 
+            font-size: 0.9rem; font-weight: 600; transition: 0.3s;
+        }
+        .nav-links a:hover, .active { color: var(--emerald); text-shadow: 0 0 8px var(--emerald-glow); }
+
+        /* Hero Layout */
+        .container { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
+
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: var(--blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 50px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        h1 { font-size: 4rem; font-weight: 900; margin-bottom: 10px; line-height: 1; }
+        .hero-sub { color: var(--text-dim); font-size: 1.2rem; margin-bottom: 30px; }
+
+        /* Functional Buttons */
+        .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .btn {
+            padding: 14px 32px; border-radius: 12px; font-weight: 700;
+            text-decoration: none; transition: 0.3s; cursor: pointer; border: none;
+            font-size: 0.9rem;
+        }
+        .btn-primary { background: var(--emerald); color: #000; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px var(--emerald-glow); }
+        .btn-secondary { background: rgba(255,255,255,0.05); color: #fff; border: 1px solid var(--glass-border); }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+        /* Game Mode Grid -> Infrastructure Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: left;
+        }
+        .card:hover { transform: scale(1.03); border-color: var(--emerald); box-shadow: 0 0 20px var(--emerald-glow); }
+        .card i { font-size: 2rem; color: var(--emerald); margin-bottom: 20px; display: block; text-shadow: 0 0 10px var(--emerald-glow); }
+        .card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .card p { color: var(--text-dim); font-size: 0.95ln; }
+
+        #toast { 
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            background: var(--emerald); color: #000; padding: 12px 30px;
+            border-radius: 50px; font-weight: 800; display: none; z-index: 2000;
+        }
+    </style>
+</head>
+<body>
+    <div id="toast">HOST IP COPIED TO CLIPBOARD</div>
+    <nav>
+        <div class="logo">KAMALI<span>NET</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="updates.html">Updates</a></li>
+            <li><a href="rules.html">Protocols</a></li>
+            <li><a href="staff.html">Operators</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="halloffame.html">Hall Of Fame</a></li>
+            <li><a href="discord.html">Comms</a></li>
+        </ul>
+        <button class="btn btn-primary" style="padding: 8px 20px;" onclick="copyIP()">CONNECT</button>
+    </nav>
+
+    <div class="container">
+        <div class="glass-panel">
+            <p style="text-transform: uppercase; letter-spacing: 3px; color: var(--emerald); font-weight: 800; font-size: 0.8rem; text-shadow: 0 0 10px var(--emerald-glow);">Next-Gen Cyber Hub</p>
+            <h1>Secure Your <span>Network.</span></h1>
+            <p class="hero-sub">Welcome to Kamali Networking. Deploy, route, and safeguard high-throughput decentralized architecture.</p>
+            <p class="hero-sub">If Grid Says Offline, Uplink is on Standby. Connect to Initiate Stream.</p>
+
+<div class="status-panel" style="margin-top: 20px; display: inline-flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.05); padding: 12px 24px; border-radius: 16px; border: 1px solid var(--glass-border); backdrop-filter: blur(10px);">
+    <div id="status-indicator" style="display: flex; align-items: center; gap: 10px;">
+        <span class="status-dot" id="server-dot" style="height: 12px; width: 12px; background-color: #555; border-radius: 50%; display: inline-block; transition: 0.5s;"></span>
+        <span id="status-text" style="color: var(--text-dim); font-weight: 900; letter-spacing: 1.5px; font-size: 0.85rem; text-transform: uppercase;">SCANNING...</span>
+    </div>
+    
+    <div style="width: 1px; height: 20px; background: var(--glass-border);"></div>
+
+    <div class="player-info" style="color: var(--text-main); font-weight: 600; font-size: 0.95rem; font-family: 'Inter', sans-serif;">
+        ACTIVE NODES: <span id="player-count" style="color: var(--emerald); text-shadow: 0 0 10px var(--emerald-glow);">0</span> <span style="color: var(--text-dim); opacity: 0.5;">/ 4096</span>
+    </div>
+</div>
+
+<script>
+    async function updateServerStatus() {
+        const statusText = document.getElementById('status-text');
+        const statusDot = document.getElementById('server-dot');
+        const playerCount = document.getElementById('player-count');
+
+        try {
+            // Simulated telemetry loop for demo purposes
+            const response = await fetch('https://api.ipify.org?format=json');
+            if (response.ok) {
+                statusText.innerText = "ONLINE";
+                statusText.style.color = "var(--emerald)";
+                statusDot.style.backgroundColor = "var(--emerald)";
+                statusDot.style.boxShadow = "0 0 12px var(--emerald)";
+                playerCount.innerText = "1,024";
+            } else {
+                throw new Error("Offline");
+            }
+        } catch (error) {
+            statusText.innerText = "STANDBY";
+            statusText.style.color = "#00f3ff";
+            statusDot.style.backgroundColor = "#00f3ff";
+            statusDot.style.boxShadow = "0 0 12px rgba(0, 243, 255, 0.5)";
+            playerCount.innerText = "42";
+        }
+    }
+
+    updateServerStatus();
+    setInterval(updateServerStatus, 30000);
+</script>
+
+            <div class="btn-group" style="margin-top: 30px;">
+                <a href="javascript:void(0)" class="copy-btn" id="ip-button" onclick="copyIP()">
+                   COPY HOST IP
+                </a>
+                <a href="discord.html" class="btn btn-secondary"><i class="fas fa-terminal"></i> Secure Comms Feed</a>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <i class="fas fa-network-wired"></i>
+                <h3>Mesh Routing Core</h3>
+                <p>Decentralized BGP-secure multi-path routing with sub-millisecond failover capabilities and continuous traffic shaper optimization.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Quantum Firewall</h3>
+                <p>Military-grade encryption matrix featuring automated threat mitigation, real-time intrusion detection, and isolated zero-trust VLANs.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-satellite-dish"></i>
+                <h3>Quantum Edge Nodes</h3>
+                <p>High-throughput edge computing points distributed globally across multi-cloud infrastructure for ultimate latency reduction.</p>
+            </div>
+        </div>
+    </div>
+
+ <script>
+    /** * CLIPBOARD SYSTEM 
+     * Handles IP copying and visual button feedback
+     */
+    function copyIP() {
+        const serverIP = "net.kamalinetwork.core";
+        const btn = document.getElementById('ip-button');
+        
+        navigator.clipboard.writeText(serverIP).then(() => {
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "HOST IP COPIED!";
+            btn.classList.add('copied-success');
+            
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.classList.remove('copied-success');
+            }, 2000);
+        }).catch(err => {
+            console.error('Copy failed:', err);
+        });
+    }
+</script>
+
+<style>
+    /* Button Aesthetics */
+    .copy-btn {
+        display: inline-block;
+        background: var(--emerald);
+        color: #000 !important;
+        font-weight: 800;
+        padding: 14px 32px;
+        border-radius: 12px;
+        text-decoration: none;
+        letter-spacing: 1px;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 0 20px var(--emerald-glow);
+        cursor: pointer;
+        border: none;
+        text-transform: uppercase;
+    }
+
+    .copy-btn:hover {
+        transform: scale(1.05) translateY(-3px);
+        box-shadow: 0 0 35px var(--emerald);
+        filter: brightness(1.1);
+    }
+
+    /* Success State Flash */
+    .copied-success {
+        background: #ffffff !important;
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.8) !important;
+        transform: scale(0.95) !important;
+    }
+</style>
+</body>
+</html>
